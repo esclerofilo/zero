@@ -3,7 +3,7 @@
     "name": "Untitled",
     "metadata": {
         "mapbox:autocomposite": true,
-        "mapbox:thumb": "data:image/webp;base64,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",
+        "mapbox:thumb": "data:image/webp;base64,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",
         "mapbox:uiParadigm": "layers",
         "mapbox:sdk-support": {
             "js": "3.14.0",
@@ -11,10 +11,6 @@
             "ios": "11.14.0"
         },
         "mapbox:groups": {
-            "Choropleth, choropleth": {
-                "collapsed": true,
-                "name": "Choropleth, choropleth"
-            },
             "Road network, tunnels": {
                 "name": "Road network, tunnels",
                 "collapsed": true
@@ -35,9 +31,13 @@
                 "name": "Road network, road-labels",
                 "collapsed": true
             },
+            "Choropleth, choropleth": {
+                "collapsed": false,
+                "name": "Choropleth, choropleth"
+            },
             "3D extrusions, extrusions": {
-                "name": "3D extrusions, extrusions",
-                "collapsed": true
+                "collapsed": false,
+                "name": "3D extrusions, extrusions"
             },
             "Choropleth, choropleth-labels": {
                 "collapsed": true,
@@ -45,26 +45,27 @@
             }
         },
         "mapbox:uiExpandedImports": ["basemap"],
+        "mapbox:trackposition": false,
         "mapbox:decompiler": {
             "id": "cmcq5o8os00kf01qvfr0zh564",
             "strata": [
                 {
                     "id": "cmcq5o8os00kf01qvfr0zh564",
                     "order": [
-                        ["data-viz/choropleth", "choropleth"],
+                        "choropleth-fill",
+                        "choropleth-stroke",
                         ["road-network", "tunnels"],
                         ["road-network", "surface"],
+                        "Predial Hijuelas Fontaine",
+                        "Areas Protegidas",
                         ["road-network", "bridges"],
                         "choropleth-stroke copy",
-                        "choropleth-fill copy 3",
-                        "Predial Hijuelas Fontaine",
+                        "Plano Regulador PRMS",
                         "choropleth-fill copy 2",
                         "choropleth-fill copy",
                         ["admin-boundaries", "admin"],
                         ["road-network", "road-labels"],
-                        ["data-viz/extrusions", "extrusions"],
-                        ["data-viz/extrusions", "extrusions-labels"],
-                        ["data-viz/choropleth", "choropleth-labels"],
+                        "choropleth-labels",
                         "familia"
                     ]
                 }
@@ -80,122 +81,25 @@
                     "admin-0-boundary-disputed": {
                         "layout": {"visibility": "none"}
                     }
-                },
-                "data-viz/choropleth": {
-                    "choropleth-labels": {
-                        "layout": {
-                            "text-field": [
-                                "match",
-                                ["get", "Name"],
-                                [
-                                    "PRMS_pirque_Áreas de Preservación Ecológica",
-                                    "PRMS_Riesgo Quebradas",
-                                    "PRMS_Áreas de Protección Ecológica con Desarrollo Controlado",
-                                    "PRMS_Áreas de Interés Agropecuario Exclusivo"
-                                ],
-                                ["to-string", ["get", "Name"]],
-                                ""
-                            ],
-                            "visibility": "none"
-                        }
-                    },
-                    "choropleth-fill": {
-                        "paint": {"fill-opacity": 0.32},
-                        "layout": {"visibility": "none"}
-                    },
-                    "choropleth-stroke": {"layout": {"visibility": "none"}}
                 }
             },
             "components": {
                 "admin-boundaries": "18.0.0",
-                "data-viz/choropleth": "2.1.1",
-                "road-network": "18.0.0",
-                "data-viz/extrusions": "2.1.1"
+                "road-network": "18.0.0"
             },
             "propConfig": {
                 "admin-boundaries": {
                     "admin1Width": 2,
                     "worldview": "Configured in SDK"
                 },
-                "data-viz/choropleth": {
-                    "choroplethColorDataField": "Name",
-                    "choroplethLabelColor": "Black",
-                    "choroplethStroke": true,
-                    "choroplethLabelDataField": "Name",
-                    "choroplethOpacity": 0,
-                    "choroplethLabels": true,
-                    "choroplethStrokeWidth": 2,
-                    "choroplethDataSource": [
-                        "mapbox://pablofontaine.88czwq0m",
-                        "Familia"
-                    ],
-                    "choroplethColorScale": {
-                        "type": "Discrete",
-                        "values": [
-                            [
-                                [
-                                    "PRMS_Áreas de Protección Ecológica con Desarrollo Controlado"
-                                ],
-                                "hsl(96, 40%, 38%)"
-                            ],
-                            [
-                                [
-                                    "PRMS_Áreas de Interés Agropecuario Exclusivo"
-                                ],
-                                "hsl(201, 100%, 97%)"
-                            ],
-                            [
-                                ["PRMS_pirque_Áreas de Preservación Ecológica"],
-                                "hsl(84, 64%, 21%)"
-                            ],
-                            [["PRMS_Riesgo Quebradas"], "hsl(212, 99%, 68%)"]
-                        ]
-                    }
-                },
-                "road-network": {},
-                "data-viz/extrusions": {
-                    "extrusionsDataSource": [
-                        "mapbox://pablofontaine.b6x7yysz",
-                        "Query_Areas_Protegidas-9m72z5"
-                    ],
-                    "extrusionsLabelDataField": "URL_SIMBIO",
-                    "extrusionsHeightDataField": "designacio",
-                    "extrusionsHeightScale": {
-                        "type": "Discrete",
-                        "values": [
-                            [["Monumento Natural"], 10],
-                            [["Parque Nacional"], 85],
-                            [["Reserva Nacional"], 160],
-                            [["Santuario de la Naturaleza"], 260],
-                            [["Área de Conservación de Múltiples U"], 535]
-                        ]
-                    },
-                    "extrusionsColorScale": {
-                        "type": "Continuous",
-                        "values": [[[], "hsl(227, 83%, 61%)"]],
-                        "value": {
-                            "type": "Continuous",
-                            "values": [[[], "hsl(227, 83%, 61%)"]],
-                            "value": {
-                                "type": "Continuous",
-                                "values": [[[], "hsl(100, 82%, 85%)"]],
-                                "value": {
-                                    "type": "Continuous",
-                                    "values": [[[], "hsl(58, 80%, 61%)"]],
-                                    "value": {
-                                        "type": "Continuous",
-                                        "values": [[[], "hsl(63, 95%, 54%)"]]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                "road-network": {}
             }
         }
     },
-    "center": [-34, 38],
-    "zoom": 2,
+    "center": [-70.44717036258919, -33.73208917858553],
+    "zoom": 9.642676218405413,
+    "bearing": 0,
+    "pitch": 0,
     "terrain": {
         "source": "mapbox-dem",
         "exaggeration": [
@@ -242,10 +146,6 @@
         {
             "id": "choropleth-fill",
             "type": "fill",
-            "metadata": {
-                "mapbox:featureComponent": "data-viz/choropleth",
-                "mapbox:group": "Choropleth, choropleth"
-            },
             "source": "composite",
             "source-layer": "Familia",
             "filter": ["has", "Name"],
@@ -270,10 +170,6 @@
         {
             "id": "choropleth-stroke",
             "type": "line",
-            "metadata": {
-                "mapbox:featureComponent": "data-viz/choropleth",
-                "mapbox:group": "Choropleth, choropleth"
-            },
             "source": "composite",
             "source-layer": "Familia",
             "layout": {"visibility": "none"},
@@ -1868,6 +1764,144 @@
             }
         },
         {
+            "id": "Predial Hijuelas Fontaine",
+            "type": "fill",
+            "source": "composite",
+            "source-layer": "Familia",
+            "slot": "",
+            "filter": ["has", "Description"],
+            "paint": {
+                "fill-color": [
+                    "match",
+                    ["get", "Name"],
+                    [
+                        "Hijuela 6",
+                        "Hijuela 5",
+                        "Hijuela 4",
+                        "Hijuela 7",
+                        "Hijuela Potrero Grande",
+                        "Hijuela 8",
+                        "Hijuela Los dos Peumos",
+                        "Hijuela del Río",
+                        "Hijuela La Majadilla",
+                        "Hijuela 1",
+                        "Hijuela El Peumal",
+                        "Hijuela 9",
+                        "Hijuela El Peumal Alto",
+                        "Hijuela 3",
+                        "Hijuela 2",
+                        "Hijuela La Reserva (NO)",
+                        "Hijuela Canal Lo Arcaya"
+                    ],
+                    "hsl(227, 83%, 61%)",
+                    ["Parcelas"],
+                    "hsla(0, 68%, 43%, 0.57)",
+                    ["Hijuela IX", "Hijuela VI", "Hijuela I"],
+                    "hsla(229, 88%, 27%, 0.98)",
+                    "hsla(0, 2%, 4%, 0)"
+                ],
+                "fill-opacity": 0.7,
+                "fill-outline-color": "hsla(0, 0%, 7%, 0.57)"
+            }
+        },
+        {
+            "id": "Areas Protegidas",
+            "type": "fill-extrusion",
+            "source": "composite",
+            "source-layer": "Query_Areas_Protegidas-9m72z5",
+            "slot": "",
+            "layout": {"visibility": "none"},
+            "paint": {
+                "fill-extrusion-height": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    0,
+                    [
+                        "*",
+                        [
+                            "match",
+                            ["get", "designacio"],
+                            "Monumento Natural",
+                            10,
+                            "Parque Nacional",
+                            85,
+                            "Reserva Nacional",
+                            160,
+                            "Santuario de la Naturaleza",
+                            260,
+                            "Área de Conservación de Múltiples U",
+                            535,
+                            0
+                        ],
+                        1
+                    ],
+                    5,
+                    [
+                        "*",
+                        [
+                            "match",
+                            ["get", "designacio"],
+                            "Monumento Natural",
+                            10,
+                            "Parque Nacional",
+                            85,
+                            "Reserva Nacional",
+                            160,
+                            "Santuario de la Naturaleza",
+                            260,
+                            "Área de Conservación de Múltiples U",
+                            535,
+                            0
+                        ],
+                        1.1
+                    ],
+                    10,
+                    [
+                        "*",
+                        [
+                            "match",
+                            ["get", "designacio"],
+                            "Monumento Natural",
+                            10,
+                            "Parque Nacional",
+                            85,
+                            "Reserva Nacional",
+                            160,
+                            "Santuario de la Naturaleza",
+                            260,
+                            "Área de Conservación de Múltiples U",
+                            535,
+                            0
+                        ],
+                        1.4
+                    ],
+                    22,
+                    [
+                        "*",
+                        [
+                            "match",
+                            ["get", "designacio"],
+                            "Monumento Natural",
+                            10,
+                            "Parque Nacional",
+                            85,
+                            "Reserva Nacional",
+                            160,
+                            "Santuario de la Naturaleza",
+                            260,
+                            "Área de Conservación de Múltiples U",
+                            535,
+                            0
+                        ],
+                        2
+                    ]
+                ],
+                "fill-extrusion-color": "hsl(227, 83%, 61%)",
+                "fill-extrusion-opacity": 0.4
+            }
+        },
+        {
             "id": "bridge-minor-case",
             "type": "line",
             "metadata": {
@@ -2715,7 +2749,7 @@
             }
         },
         {
-            "id": "choropleth-fill copy 3",
+            "id": "Plano Regulador PRMS",
             "type": "fill",
             "source": "composite",
             "source-layer": "Familia",
@@ -2739,45 +2773,6 @@
             }
         },
         {
-            "id": "Predial Hijuelas Fontaine",
-            "type": "fill",
-            "source": "composite",
-            "source-layer": "Familia",
-            "slot": "",
-            "filter": ["has", "Description"],
-            "paint": {
-                "fill-color": [
-                    "match",
-                    ["get", "Name"],
-                    [
-                        "Hijuela 6",
-                        "Hijuela 5",
-                        "Hijuela 4",
-                        "Hijuela 7",
-                        "Hijuela Potrero Grande",
-                        "Hijuela 8",
-                        "Hijuela Los dos Peumos",
-                        "Hijuela del Río",
-                        "Hijuela La Majadilla",
-                        "Hijuela 1",
-                        "Hijuela El Peumal",
-                        "Hijuela 9",
-                        "Hijuela El Peumal Alto",
-                        "Hijuela 3",
-                        "Hijuela 2",
-                        "Hijuela La Reserva (NO)",
-                        "Hijuela Canal Lo Arcaya"
-                    ],
-                    "hsl(227, 83%, 61%)",
-                    ["Parcelas"],
-                    "hsla(0, 68%, 43%, 0.57)",
-                    "hsla(0, 2%, 4%, 0)"
-                ],
-                "fill-opacity": 0.7,
-                "fill-outline-color": "hsla(0, 0%, 7%, 0.57)"
-            }
-        },
-        {
             "id": "choropleth-fill copy 2",
             "type": "fill",
             "source": "composite",
@@ -2786,14 +2781,21 @@
             "filter": ["has", "Description"],
             "paint": {
                 "fill-color": [
-                    "match",
-                    ["get", "Name"],
-                    ["", "Hijuela I"],
+                    "case",
+                    ["match", ["get", "Name"], ["", "Hijuela I"], true, false],
                     "hsl(154, 71%, 26%)",
-                    ["Hijuela VIII-A"],
+                    ["match", ["get", "Name"], ["Hijuela VIII-A"], true, false],
                     "hsl(131, 62%, 42%)",
-                    ["Hijuela IX"],
+                    ["match", ["get", "Name"], ["Hijuela IX"], true, false],
                     "hsla(124, 55%, 39%, 0.98)",
+                    [
+                        "match",
+                        ["get", "Name"],
+                        ["Hijuela I", "Hijuela IX"],
+                        true,
+                        false
+                    ],
+                    "hsla(143, 87%, 42%, 0.37)",
                     "hsla(0, 0%, 0%, 0)"
                 ],
                 "fill-opacity": 0.7
@@ -3404,112 +3406,8 @@
             }
         },
         {
-            "id": "3D-extrusions",
-            "type": "fill-extrusion",
-            "metadata": {
-                "mapbox:featureComponent": "data-viz/extrusions",
-                "mapbox:group": "3D extrusions, extrusions"
-            },
-            "source": "composite",
-            "source-layer": "Query_Areas_Protegidas-9m72z5",
-            "layout": {},
-            "paint": {
-                "fill-extrusion-height": [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    0,
-                    [
-                        "*",
-                        [
-                            "match",
-                            ["get", "designacio"],
-                            "Monumento Natural",
-                            10,
-                            "Parque Nacional",
-                            85,
-                            "Reserva Nacional",
-                            160,
-                            "Santuario de la Naturaleza",
-                            260,
-                            "Área de Conservación de Múltiples U",
-                            535,
-                            0
-                        ],
-                        1
-                    ],
-                    5,
-                    [
-                        "*",
-                        [
-                            "match",
-                            ["get", "designacio"],
-                            "Monumento Natural",
-                            10,
-                            "Parque Nacional",
-                            85,
-                            "Reserva Nacional",
-                            160,
-                            "Santuario de la Naturaleza",
-                            260,
-                            "Área de Conservación de Múltiples U",
-                            535,
-                            0
-                        ],
-                        1.1
-                    ],
-                    10,
-                    [
-                        "*",
-                        [
-                            "match",
-                            ["get", "designacio"],
-                            "Monumento Natural",
-                            10,
-                            "Parque Nacional",
-                            85,
-                            "Reserva Nacional",
-                            160,
-                            "Santuario de la Naturaleza",
-                            260,
-                            "Área de Conservación de Múltiples U",
-                            535,
-                            0
-                        ],
-                        1.4
-                    ],
-                    22,
-                    [
-                        "*",
-                        [
-                            "match",
-                            ["get", "designacio"],
-                            "Monumento Natural",
-                            10,
-                            "Parque Nacional",
-                            85,
-                            "Reserva Nacional",
-                            160,
-                            "Santuario de la Naturaleza",
-                            260,
-                            "Área de Conservación de Múltiples U",
-                            535,
-                            0
-                        ],
-                        2
-                    ]
-                ],
-                "fill-extrusion-color": "hsl(227, 83%, 61%)",
-                "fill-extrusion-opacity": 0.4
-            }
-        },
-        {
             "id": "choropleth-labels",
             "type": "symbol",
-            "metadata": {
-                "mapbox:featureComponent": "data-viz/choropleth",
-                "mapbox:group": "Choropleth, choropleth-labels"
-            },
             "source": "composite",
             "source-layer": "Familia",
             "minzoom": 1,
@@ -3560,7 +3458,7 @@
         }
     ],
     "created": "2025-07-05T11:24:07.804Z",
-    "modified": "2025-07-07T09:53:55.515Z",
+    "modified": "2025-07-07T11:34:46.426Z",
     "id": "cmcq5o8os00kf01qvfr0zh564",
     "owner": "pablofontaine",
     "visibility": "public",
