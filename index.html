@@ -2,19 +2,21 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Mapa Interactivo (con Selector de Capas)</title>
+    <title>Mapa Interactivo (con Cálculo de Superficie)</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     
     <!-- Archivos de Mapbox -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
     
+    <!-- NUEVO: Librería Turf.js para cálculos geoespaciales -->
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    
     <!-- Estilos CSS -->
     <style>
         body { margin: 0; padding: 0; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
         
-        /* Caja de información del predio seleccionado */
         #features { 
             position: absolute; 
             top: 20px;
@@ -34,9 +36,12 @@
          #info-box p {
             margin: 0;
             font-size: 14px;
+            line-height: 1.4;
+        }
+        #info-box p strong {
+            color: #333;
         }
 
-        /* --- NUEVO: Menú para el selector de capas --- */
         #menu {
             position: absolute;
             background: #fff;
@@ -76,16 +81,13 @@
 </head>
 <body>
 
-<!-- Contenedor del mapa y caja de información -->
 <div id="map"></div>
 <div class="map-overlay" id="features">
-  <h2>Predios</h2>
+  <h2>Fundo el Principal</h2>
   <div id="info-box"><p>Haz clic sobre un predio</p></div>
 </div>
 
-<!-- --- NUEVO: Contenedor para el menú de capas --- -->
 <nav id="menu"></nav>
-
 
 <script>
     // Tu token de acceso de Mapbox
@@ -106,33 +108,39 @@
         const sourceLayerName = 'Familia'; 
 
         // Capas de resaltado (relleno y borde)
-        map.addLayer({
-            'id': 'predios-highlight-fill', 'type': 'fill', 'source': 'composite', 
-            'source-layer': sourceLayerName, 'paint': {'fill-color': '#00FFFF', 'fill-opacity': 0.5},
-            'filter': ['==', ['id'], '']
-        });
-        map.addLayer({
-            'id': 'predios-highlight-border', 'type': 'line', 'source': 'composite', 
-            'source-layer': sourceLayerName, 'paint': {'line-color': '#008B8B', 'line-width': 2.5},
-            'filter': ['==', ['id'], '']
-        });
+        map.addLayer({'id': 'predios-highlight-fill', 'type': 'fill', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'fill-color': '#00FFFF', 'fill-opacity': 0.5}, 'filter': ['==', ['id'], '']});
+        map.addLayer({'id': 'predios-highlight-border', 'type': 'line', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'line-color': '#008B8B', 'line-width': 2.5}, 'filter': ['==', ['id'], '']});
 
         // Lógica de clic
         map.on('click', interactiveLayerId, (e) => {
             if (e.features.length > 0) {
-                const clickedId = e.features[0].id;
+                const clickedFeature = e.features[0];
+                const clickedId = clickedFeature.id;
+
                 if (clickedId === clickedFeatureId) {
+                    // Deseleccionar
                     map.setFilter('predios-highlight-fill', ['==', ['id'], '']);
                     map.setFilter('predios-highlight-border', ['==', ['id'], '']);
                     infoBox.innerHTML = '<p>Haz clic sobre un predio</p>';
                     clickedFeatureId = null;
                 } else {
+                    // Seleccionar un nuevo predio
                     clickedFeatureId = clickedId;
-                    const featureName = e.features[0].properties.Name;
-                    const featureDescription = e.features[0].properties.Description;
+                    const featureName = clickedFeature.properties.Name;
+                    const featureDescription = clickedFeature.properties.Description;
+
+                    // --- NUEVO: Cálculo de superficie ---
+                    const areaMeters = turf.area(clickedFeature); // Calcula área en m²
+                    const areaHectares = areaMeters / 10000; // Convierte a hectáreas
+
+                    // Actualizar filtros de resaltado
                     map.setFilter('predios-highlight-fill', ['==', ['id'], clickedFeatureId]);
                     map.setFilter('predios-highlight-border', ['==', ['id'], clickedFeatureId]);
-                    infoBox.innerHTML = `<h3>${featureName}</h3><p>${featureDescription || 'Sin descripción'}</p>`;
+                    
+                    // Actualizar la caja de información con la superficie
+                    infoBox.innerHTML = `<h3>${featureName}</h3>
+                                         <p>${featureDescription || 'Sin descripción'}</p>
+                                         <p><strong>Superficie:</strong> ${areaHectares.toFixed(2)} ha</p>`;
                 }
             }
         });
@@ -141,8 +149,7 @@
         map.on('mouseenter', interactiveLayerId, () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', interactiveLayerId, () => { map.getCanvas().style.cursor = ''; });
 
-
-        // --- NUEVO: Lógica para el selector de capas ---
+        // Lógica para el selector de capas
         const toggleableLayerIds = [
             { id: 'Predial Hijuelas Fontaine', name: 'Predios' },
             { id: 'choropleth-fill copy 3', name: 'Zonificación PRMS' },
@@ -150,22 +157,16 @@
         ];
 
         for (const layer of toggleableLayerIds) {
-            // Crear el enlace en el menú
             const link = document.createElement('a');
             link.id = layer.id;
             link.href = '#';
             link.textContent = layer.name;
-            link.className = 'active'; // Por defecto, las capas están activas
-
-            // Añadir el evento de clic
+            link.className = 'active';
             link.onclick = function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-
                 const clickedLayer = this.id;
                 const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
-                // Cambiar la visibilidad de la capa
                 if (visibility === 'visible' || visibility === undefined) {
                     map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                     this.className = '';
@@ -174,9 +175,7 @@
                     this.className = 'active';
                 }
             };
-
-            const layersMenu = document.getElementById('menu');
-            layersMenu.appendChild(link);
+            document.getElementById('menu').appendChild(link);
         }
     });
 </script>
