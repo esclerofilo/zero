@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Mapa Interactivo (Inicio Limpio)</title>
+    <title>Mapa Interactivo (Solución Definitiva)</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     
     <!-- Archivos de Mapbox -->
@@ -107,7 +107,7 @@
         const interactiveLayerId = 'Predial Hijuelas Fontaine';
         const sourceLayerName = 'Familia'; 
 
-        // Capas de resaltado
+        // Capas de resaltado (se añaden pero no son visibles hasta el clic)
         map.addLayer({'id': 'predios-highlight-fill', 'type': 'fill', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'fill-color': '#00FFFF', 'fill-opacity': 0.5}, 'filter': ['==', ['id'], '']});
         map.addLayer({'id': 'predios-highlight-border', 'type': 'line', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'line-color': '#008B8B', 'line-width': 2.5}, 'filter': ['==', ['id'], '']});
 
@@ -140,13 +140,23 @@
         map.on('mouseleave', interactiveLayerId, () => { map.getCanvas().style.cursor = ''; });
 
         // --- LÓGICA DEL SELECTOR DE CAPAS CORREGIDA ---
+        // IDs extraídos del último style.json
         const toggleableLayers = [
-            { name: 'Predios', ids: ['Predial Hijuelas Fontaine'] },
-            { name: 'Zonificación PRMS', ids: ['choropleth-fill', 'choropleth-stroke', 'choropleth-fill copy 3', 'choropleth-stroke copy', 'choropleth-labels'] },
-            { name: 'Áreas Protegidas 3D', ids: ['3D-extrusions'] }
+            { name: 'Predios', ids: ['Predial Hijuelas Fontaine', 'choropleth-fill copy 2'] },
+            { 
+                name: 'Zonificación PRMS', 
+                ids: [
+                    'Plano Regulador PRMS',
+                    'choropleth-fill', 
+                    'choropleth-stroke', 
+                    'choropleth-stroke copy',
+                    'choropleth-labels'
+                ] 
+            },
+            { name: 'Áreas Protegidas', ids: ['Areas Protegidas'] }
         ];
 
-        // --- NUEVO: Ocultar todas las capas al inicio ---
+        // Ocultar todas las capas al inicio para un mapa limpio
         for (const layerGroup of toggleableLayers) {
             for (const layerId of layerGroup.ids) {
                 if (map.getLayer(layerId)) {
