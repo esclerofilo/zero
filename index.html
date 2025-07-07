@@ -5,14 +5,11 @@
     <title>Mapa Interactivo (Solución Definitiva)</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     
-    <!-- Archivos de Mapbox -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
     
-    <!-- Librería Turf.js para cálculos geoespaciales -->
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     
-    <!-- Estilos CSS -->
     <style>
         body { margin: 0; padding: 0; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
@@ -95,7 +92,7 @@
 
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/pablofontaine/cmcq5o8os00kf01qvfr0zh564',
+        style: 'mapbox://styles/pablofontaine/cmcq5o8os00kf01qvfr0zh564', // Tu estilo
         center: [-70.46386, -33.72044],
         zoom: 14.03
     });
@@ -104,6 +101,7 @@
     let clickedFeatureId = null; 
 
     map.on('load', () => {
+        // ID de la capa de predios sobre la que se puede hacer clic
         const interactiveLayerId = 'Predial Hijuelas Fontaine';
         const sourceLayerName = 'Familia'; 
 
@@ -111,7 +109,7 @@
         map.addLayer({'id': 'predios-highlight-fill', 'type': 'fill', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'fill-color': '#00FFFF', 'fill-opacity': 0.5}, 'filter': ['==', ['id'], '']});
         map.addLayer({'id': 'predios-highlight-border', 'type': 'line', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'line-color': '#008B8B', 'line-width': 2.5}, 'filter': ['==', ['id'], '']});
 
-        // Lógica de clic
+        // Lógica de clic robusta
         map.on('click', (e) => {
             const features = map.queryRenderedFeatures(e.point, { layers: [interactiveLayerId] });
             if (features.length > 0) {
@@ -150,7 +148,8 @@
                     'choropleth-fill', 
                     'choropleth-stroke', 
                     'choropleth-stroke copy',
-                    'choropleth-labels'
+                    'choropleth-labels',
+                    'choropleth-fill copy'
                 ] 
             },
             { name: 'Áreas Protegidas', ids: ['Areas Protegidas'] }
