@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Mapa Interactivo (con Cálculo de Superficie)</title>
+    <title>Mapa Interactivo (Selector Corregido)</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     
     <!-- Archivos de Mapbox -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
     
-    <!-- NUEVO: Librería Turf.js para cálculos geoespaciales -->
+    <!-- Librería Turf.js para cálculos geoespaciales -->
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     
     <!-- Estilos CSS -->
@@ -107,7 +107,7 @@
         const interactiveLayerId = 'Predial Hijuelas Fontaine';
         const sourceLayerName = 'Familia'; 
 
-        // Capas de resaltado (relleno y borde)
+        // Capas de resaltado
         map.addLayer({'id': 'predios-highlight-fill', 'type': 'fill', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'fill-color': '#00FFFF', 'fill-opacity': 0.5}, 'filter': ['==', ['id'], '']});
         map.addLayer({'id': 'predios-highlight-border', 'type': 'line', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'line-color': '#008B8B', 'line-width': 2.5}, 'filter': ['==', ['id'], '']});
 
@@ -116,31 +116,20 @@
             if (e.features.length > 0) {
                 const clickedFeature = e.features[0];
                 const clickedId = clickedFeature.id;
-
                 if (clickedId === clickedFeatureId) {
-                    // Deseleccionar
                     map.setFilter('predios-highlight-fill', ['==', ['id'], '']);
                     map.setFilter('predios-highlight-border', ['==', ['id'], '']);
                     infoBox.innerHTML = '<p>Haz clic sobre un predio</p>';
                     clickedFeatureId = null;
                 } else {
-                    // Seleccionar un nuevo predio
                     clickedFeatureId = clickedId;
                     const featureName = clickedFeature.properties.Name;
                     const featureDescription = clickedFeature.properties.Description;
-
-                    // --- NUEVO: Cálculo de superficie ---
-                    const areaMeters = turf.area(clickedFeature); // Calcula área en m²
-                    const areaHectares = areaMeters / 10000; // Convierte a hectáreas
-
-                    // Actualizar filtros de resaltado
+                    const areaMeters = turf.area(clickedFeature);
+                    const areaHectares = areaMeters / 10000;
                     map.setFilter('predios-highlight-fill', ['==', ['id'], clickedFeatureId]);
                     map.setFilter('predios-highlight-border', ['==', ['id'], clickedFeatureId]);
-                    
-                    // Actualizar la caja de información con la superficie
-                    infoBox.innerHTML = `<h3>${featureName}</h3>
-                                         <p>${featureDescription || 'Sin descripción'}</p>
-                                         <p><strong>Superficie:</strong> ${areaHectares.toFixed(2)} ha</p>`;
+                    infoBox.innerHTML = `<h3>${featureName}</h3><p>${featureDescription || 'Sin descripción'}</p><p><strong>Superficie:</strong> ${areaHectares.toFixed(2)} ha</p>`;
                 }
             }
         });
@@ -149,32 +138,40 @@
         map.on('mouseenter', interactiveLayerId, () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', interactiveLayerId, () => { map.getCanvas().style.cursor = ''; });
 
-        // Lógica para el selector de capas
-        const toggleableLayerIds = [
-            { id: 'Predial Hijuelas Fontaine', name: 'Predios' },
-            { id: 'choropleth-fill copy 3', name: 'Zonificación PRMS' },
-            { id: '3D-extrusions', name: 'Áreas Protegidas 3D' }
+        // --- LÓGICA DEL SELECTOR DE CAPAS CORREGIDA ---
+        const toggleableLayers = [
+            { name: 'Predios', ids: ['Predial Hijuelas Fontaine'] },
+            { name: 'Zonificación PRMS', ids: ['choropleth-fill copy 3', 'choropleth-stroke copy'] },
+            { name: 'Áreas Protegidas 3D', ids: ['3D-extrusions'] }
         ];
 
-        for (const layer of toggleableLayerIds) {
+        for (const layerGroup of toggleableLayers) {
             const link = document.createElement('a');
-            link.id = layer.id;
+            link.id = layerGroup.name; // Usar el nombre del grupo como ID para el enlace
             link.href = '#';
-            link.textContent = layer.name;
+            link.textContent = layerGroup.name;
             link.className = 'active';
+
             link.onclick = function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                const clickedLayer = this.id;
-                const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-                if (visibility === 'visible' || visibility === undefined) {
-                    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                    this.className = '';
-                } else {
-                    map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-                    this.className = 'active';
+
+                // Determinar el nuevo estado de visibilidad basado en la primera capa del grupo
+                const firstLayerId = layerGroup.ids[0];
+                const currentVisibility = map.getLayoutProperty(firstLayerId, 'visibility');
+                const newVisibility = (currentVisibility === 'visible' || currentVisibility === undefined) ? 'none' : 'visible';
+
+                // Aplicar la nueva visibilidad a TODAS las capas del grupo
+                for (const layerId of layerGroup.ids) {
+                    if (map.getLayer(layerId)) { // Comprobar si la capa existe antes de cambiarla
+                        map.setLayoutProperty(layerId, 'visibility', newVisibility);
+                    }
                 }
+                
+                // Actualizar el estilo del botón
+                this.className = newVisibility === 'visible' ? 'active' : '';
             };
+            
             document.getElementById('menu').appendChild(link);
         }
     });
@@ -182,3 +179,4 @@
 
 </body>
 </html>
+
