@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Mapa Interactivo (Selector Corregido)</title>
+    <title>Mapa Interactivo (Inicio Limpio)</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     
     <!-- Archivos de Mapbox -->
@@ -112,9 +112,10 @@
         map.addLayer({'id': 'predios-highlight-border', 'type': 'line', 'source': 'composite', 'source-layer': sourceLayerName, 'paint': {'line-color': '#008B8B', 'line-width': 2.5}, 'filter': ['==', ['id'], '']});
 
         // Lógica de clic
-        map.on('click', interactiveLayerId, (e) => {
-            if (e.features.length > 0) {
-                const clickedFeature = e.features[0];
+        map.on('click', (e) => {
+            const features = map.queryRenderedFeatures(e.point, { layers: [interactiveLayerId] });
+            if (features.length > 0) {
+                const clickedFeature = features[0];
                 const clickedId = clickedFeature.id;
                 if (clickedId === clickedFeatureId) {
                     map.setFilter('predios-highlight-fill', ['==', ['id'], '']);
@@ -141,34 +142,41 @@
         // --- LÓGICA DEL SELECTOR DE CAPAS CORREGIDA ---
         const toggleableLayers = [
             { name: 'Predios', ids: ['Predial Hijuelas Fontaine'] },
-            { name: 'Zonificación PRMS', ids: ['choropleth-fill copy 3', 'choropleth-stroke copy'] },
+            { name: 'Zonificación PRMS', ids: ['choropleth-fill', 'choropleth-stroke', 'choropleth-fill copy 3', 'choropleth-stroke copy', 'choropleth-labels'] },
             { name: 'Áreas Protegidas 3D', ids: ['3D-extrusions'] }
         ];
 
+        // --- NUEVO: Ocultar todas las capas al inicio ---
+        for (const layerGroup of toggleableLayers) {
+            for (const layerId of layerGroup.ids) {
+                if (map.getLayer(layerId)) {
+                    map.setLayoutProperty(layerId, 'visibility', 'none');
+                }
+            }
+        }
+
+        // Crear los botones del menú
         for (const layerGroup of toggleableLayers) {
             const link = document.createElement('a');
-            link.id = layerGroup.name; // Usar el nombre del grupo como ID para el enlace
+            link.id = layerGroup.name;
             link.href = '#';
             link.textContent = layerGroup.name;
-            link.className = 'active';
+            link.className = ''; // Empezar como inactivo
 
             link.onclick = function (e) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                // Determinar el nuevo estado de visibilidad basado en la primera capa del grupo
                 const firstLayerId = layerGroup.ids[0];
                 const currentVisibility = map.getLayoutProperty(firstLayerId, 'visibility');
-                const newVisibility = (currentVisibility === 'visible' || currentVisibility === undefined) ? 'none' : 'visible';
+                const newVisibility = (currentVisibility === 'none') ? 'visible' : 'none';
 
-                // Aplicar la nueva visibilidad a TODAS las capas del grupo
                 for (const layerId of layerGroup.ids) {
-                    if (map.getLayer(layerId)) { // Comprobar si la capa existe antes de cambiarla
+                    if (map.getLayer(layerId)) {
                         map.setLayoutProperty(layerId, 'visibility', newVisibility);
                     }
                 }
                 
-                // Actualizar el estilo del botón
                 this.className = newVisibility === 'visible' ? 'active' : '';
             };
             
@@ -179,4 +187,3 @@
 
 </body>
 </html>
-
